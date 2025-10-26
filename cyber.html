@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberGuardian 2.0</title>
+  <style>
+    :root {
+      --bg-dark: #0b0f19;
+      --text-dark: #e0e0e0;
+      --accent-dark: #00b7ff;
+      --bg-light: #f5f7fa;
+      --text-light: #111;
+      --accent-light: #0077ff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+      transition: all 0.5s ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: var(--accent-dark);
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text-dark);
+      margin: 0 15px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-dark);
+    }
+
+    #modeToggle {
+      background: none;
+      border: 1px solid var(--accent-dark);
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      color: var(--accent-dark);
+      transition: all 0.3s ease;
+    }
+
+    #modeToggle:hover {
+      background: var(--accent-dark);
+      color: white;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #001220, #00284d);
+      color: white;
+      padding: 120px 20px;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 10px auto 30px;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      background: var(--accent-dark);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #008cd6;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 15px;
+      width: 280px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      background: rgba(0, 183, 255, 0.1);
+    }
+
+    .quiz, .scanner, .resources {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin: 8px 0;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Light Mode */
+    body.light {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body.light header {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    body.light nav a {
+      color: var(--text-light);
+    }
+
+    body.light .feature-card {
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+    }
+
+    body.light .btn {
+      background: var(--accent-light);
+    }
+
+    body.light .btn:hover {
+      background: #005ecc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CyberGuardian 2.0</h1>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#scanner">Scanner</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#resources">Resources</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="modeToggle">🌙</button>
+  </header>
+
+  <section class="hero">
+    <h2>Protect Your Digital World with AI</h2>
+    <p>CyberGuardian 2.0 detects, prevents, and predicts cyber threats using real-time AI algorithms designed for personal and business safety.</p>
+    <button class="btn">Get Started</button>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature-card"><h3>🧠 AI Threat Detection</h3><p>Real-time monitoring and alerts for suspicious activities online.</p></div>
+      <div class="feature-card"><h3>🔒 Password Strength Analyzer</h3><p>Instantly rates your password safety and suggests improvements.</p></div>
+      <div class="feature-card"><h3>🕵️ Phishing Scanner</h3><p>Checks URLs to help identify fake or malicious websites.</p></div>
+      <div class="feature-card"><h3>🧩 Browser Extension</h3><p>One-click protection directly in your browser (coming soon).</p></div>
+    </div>
+  </section>
+
+  <section id="scanner" class="scanner">
+    <h2>Phishing Link Checker</h2>
+    <p>Enter a URL to test if it’s safe:</p>
+    <input type="text" id="urlInput" placeholder="https://example.com" />
+    <button class="btn" onclick="scanURL()">Check</button>
+    <p id="scanResult"></p>
+  </section>
+
+  <section id="quiz" class="quiz">
+    <h2>Cyber Awareness Quiz</h2>
+    <p>Question: You receive an email asking for your bank details. What do you do?</p>
+    <button class="btn" onclick="answerQuiz('wrong')">Reply with info</button>
+    <button class="btn" onclick="answerQuiz('right')">Ignore and report it</button>
+    <p id="quizResult"></p>
+  </section>
+
+  <section id="resources" class="resources">
+    <h2>Resources</h2>
+    <div class="features">
+      <div class="feature-card"><h3>Stay Safe Online</h3><p>Learn tips to keep your personal data protected.</p></div>
+      <div class="feature-card"><h3>Top Cyber Scams 2025</h3><p>Explore common scams to watch out for this year.</p></div>
+      <div class="feature-card"><h3>Protect Your Privacy</h3><p>Discover how to control what data you share online.</p></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>CyberGuardian 2.0 was built by innovators to make cybersecurity easy, powerful, and accessible to everyone. Together, we’re building a safer internet.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <input type="text" placeholder="Your Name" />
+    <input type="email" placeholder="Your Email" />
+    <textarea placeholder="Message"></textarea>
+    <button class="btn">Send</button>
+  </section>
+
+  <footer>
+    © 2025 CyberGuardian 2.0 — Secure the Future ⚡
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById("modeToggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      toggleBtn.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
+    });
+
+    function scanURL() {
+      const input = document.getElementById("urlInput").value.trim();
+      const result = document.getElementById("scanResult");
+      if (!input) {
+        result.textContent = "Please enter a URL first.";
+        return;
+      }
+      const safe = Math.random() > 0.3;
+      result.textContent = safe
+        ? "✅ This link looks safe!"
+        : "⚠️ Warning: This link may be suspicious!";
+    }
+
+    function answerQuiz(choice) {
+      const result = document.getElementById("quizResult");
+      result.textContent = choice === "right"
+        ? "🎉 Correct! You should never share personal info online."
+        : "❌ Wrong! Never reply to unknown requests for sensitive info.";
+    }
+  </script>
+</body>
+</html>
